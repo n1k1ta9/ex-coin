@@ -271,9 +271,33 @@ setInterval(() => {
 function scrollToGame() {
   document.getElementById("game").scrollIntoView({behavior:"smooth"});
 }
+  /* ---------- COUNTDOWN (DE TIME) ---------- */
+const targetDate = new Date("2026-02-14T15:30:00+01:00");
+
+function updateCountdown() {
+  const now = new Date();
+  const diff = targetDate - now;
+
+  if (diff <= 0) return;
+
+  const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const m = Math.floor((diff / (1000 * 60)) % 60);
+  const s = Math.floor((diff / 1000) % 60);
+
+  document.getElementById("days").textContent = d;
+  document.getElementById("hours").textContent = h;
+  document.getElementById("minutes").textContent = m;
+  document.getElementById("seconds").textContent = s;
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
 </script>
 
 </body>
 
 </html>
+
 
